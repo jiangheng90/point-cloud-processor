@@ -4,15 +4,12 @@ from src.tiling.leaf import Leaf
 class OctreeTilingSplit:
     def __init__(
             self,
-            depth=0,
-            number_of_x_in_zero=1,
-            number_of_y_in_zero=1,
-            number_of_z_in_zero=1):
+            depth=0, division=[1, 1, 1]):
 
         self.depth = depth
-        self.number_of_x = number_of_x_in_zero * pow(2, depth)
-        self.number_of_y = number_of_y_in_zero * pow(2, depth)
-        self.number_of_z = number_of_z_in_zero * pow(2, depth)
+        self.number_of_x = division[0] * pow(2, depth)
+        self.number_of_y = division[1] * pow(2, depth)
+        self.number_of_z = division[2] * pow(2, depth)
 
         self.split_leafs: list[Leaf] = list()
 
@@ -26,4 +23,3 @@ class OctreeTilingSplit:
                     leaf = Leaf(self.depth, x_coord, y_coord, z_coord,
                                 self.number_of_x, self.number_of_y, self.number_of_z)
                     self.split_leafs.append(leaf)
-        
